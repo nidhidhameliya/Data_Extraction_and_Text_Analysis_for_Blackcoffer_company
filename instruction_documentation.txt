@@ -1,0 +1,93 @@
+ Instructions Documentation
+
+1. Solution Approach Explanation
+The task involves extracting and analyzing text from a series of URLs, calculating various text metrics, and then saving the results in a structured format. The solution is divided into several key phases:
+
+    1. Data Extraction:
+   - The script reads URLs from an Excel file (`Input.xlsx`), using `Pandas` to manage the data.
+   - Each URL is fetched using the `requests` library with proper headers to simulate a browser request.
+   - The web content is parsed using `BeautifulSoup` to extract the main title (`<h1>`) and the article content (`<p>` tags).
+   - The extracted content is saved as a text file in a specified directory for further analysis.
+
+     2. Text Analysis:
+   - Stop words Removal: Text is tokenized, and common English stopwords are filtered using the `NLTK` library.
+   - Sentiment Analysis: Positive and negative words are identified using custom word lists loaded from `MasterDictionary`. Scores for positive, negative, polarity, and subjectivity are calculated.
+   - Text Metrics: Additional metrics are calculated, including:
+     - Average sentence length.
+     - Percentage of complex words (words with more than two syllables).
+     - Gunning Fog Index for readability.
+   - Word Analysis: Word count, average word length, and count of personal pronouns are calculated.
+
+    3. Output Compilation:
+   - Results from each analysis phase are compiled and stored in an Excel sheet structure. 
+   - Missing values are handled appropriately, ensuring all data columns match the expected output structure.
+   - The final data is saved as a CSV file (`Output_Data.csv`) for further use or reporting.
+
+2. How to Run the Script
+
+To run the Python script successfully and generate the required output, follow these steps:
+
+   1. Preparation:
+   - Ensure you have Python installed (version 3.7 or higher).
+   - Install the required Python packages (dependencies) listed below.
+   - Place the following files in the root directory:
+     - `Input.xlsx`: This Excel file should contain the URLs to be analyzed.
+     - `Output Data Structure.xlsx`: A template for storing the analyzed data.
+
+    2. Directory Setup:
+   - Create the required directories where files will be saved and read:
+     - `TitleText`: Directory for storing the extracted titles and articles.
+     - `StopWords`: Directory containing custom stopwords files.
+     - `MasterDictionary`: Directory containing the sentiment word lists (`positive-words.txt` and `negative-words.txt`).
+
+    3.  Run the Script:
+   - Save the Python code as a `.py` file, e.g., `data_extraction_and_text_analysis_for_blackcoffer_company.py`.
+   - Open a command prompt or terminal.
+   - Navigate to the directory containing the script using the command:
+     ```bash
+     cd path_to_script_directory
+     ```
+   - Run the script with the following command:
+     ```bash
+     python data_extraction_and_text_analysis_for_blackcoffer_company.py
+     ```
+   - If no errors occur, the output will be saved as `Output_Data.csv`.
+
+3. Dependencies Required
+
+To run the script, the following Python packages are required:
+
+- requests: To handle HTTP requests.
+- BeautifulSoup(`bs4`): For HTML parsing.
+- pandas: For data handling and Excel file manipulation.
+- os: To manage file operations and directories.
+- nltk: Natural Language Toolkit for text tokenization and stopwords removal.
+- re: For regular expression operations.
+- openpyxl: To handle Excel file reading.
+
+Use the following commands to install the dependencies:
+
+```bash
+pip install requests
+pip install beautifulsoup4
+pip install pandas
+pip install nltk
+pip install openpyxl
+```
+
+Additional Setup for NLTK
+To ensure `NLTK` has the necessary resources, include these downloads at the start of your script:
+import nltk
+nltk.download('punkt')
+nltk.download('stopwords')
+
+
+Files and Directory Summary
+- Script File: `text_analysis.py`
+- Input Files:
+  - `Input.xlsx`: Contains URLs to process.
+  - Word lists and stopwords files in the directories `StopWords` and `MasterDictionary`.
+- Output Files:
+  - Text files in the `TitleText` directory.
+  - Analysis result in `Output_Data.csv`.
+
