@@ -67,6 +67,5 @@ This project involves:
      ```
      python scripts/text_analysis.py
      ```
-
 4. **Output**:
    - Review the final output in `Results.xlsx` for computed variables in the required format.
